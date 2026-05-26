@@ -1,39 +1,42 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+  <body>
+    <div id="app">
+      <!-- template syntax -->
+      <p>Message: {{msg}}</p>
+      <div v-html=""rawHtml""></div>
+      <div v-bind:id="dynamicId" >attribute bindings</div>
+      <p>{{number + 1}}</p>
+      <p>{{ ok ? "YES": "NO"}}</p>
+      <p></p>
+      <div v-bind:id="'list-${id}'"></div>
+    </div>
 
-<body>
-  <div id="app">
-    <!-- template syntax -->
-    <p>Message: </p>
-    <div ></div>
-    <div >attribute bindings</div>
-    <p></p>
-    <p></p>
-    <p></p>
-    <div ></div>
-  </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      const { createApp, ref } = Vue;
 
-  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-  <script>
-    const { createApp, ref } = Vue
+      const app = createApp({
+        setup() {
+          const msg = "Hello";
+          const rawHtml = ref(
+            '<span style="color:red">This should be red.</span>',
+          );
+          const dynamicId = ref("my-id");
+          const number = ref(1)
+          const ok = ref(true)
+          const id = ref(1)
+          return { msg, rawHtml, dynamicId,number, ok, id };
+        },
+      });
 
-    const app = createApp({
-      setup() {
-        
-        return {
-          
-        }
-      }
-    })
-
-    app.mount('#app')
-  </script>
-</body>
-
+      app.mount("#app");
+    </script>
+  </body>
 </html>
