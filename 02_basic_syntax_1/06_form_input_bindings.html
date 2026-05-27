@@ -1,48 +1,44 @@
 <!-- form-input-bindings.html -->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style></style>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-  </style>
-</head>
+  <body>
+    <div id="app">
+      <p>{{ inputText1 }}</p>
+      <input :value="inputText1" @input="onInput" />
 
-<body>
-  <div id="app">
-    <!-- <p>{{ inputText1 }}</p>
-    <input :value="inputText1" @input="onInput"> -->
+      <p>{{ inputText2 }}</p>
+      <input v-model="inputText2" />
+    </div>
 
-    <!-- <p>{{ inputText2 }}</p>
-    <input v-model="inputText2"> -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      const { createApp, ref } = Vue;
 
-  </div>
+      const app = createApp({
+        setup() {
+          const inputText1 = ref("");
+          const inputText2 = ref("");
 
-  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-  <script>
-    const { createApp, ref } = Vue
+          const onInput = function (event) {
+            inputText1.value = event.currentTarget.value;
+          };
 
-    const app = createApp({
-      setup() {
-        // const inputText1 = ref('')
-        // const inputText2 = ref('')
-        
-        // const onInput = function (event) {
-        //   inputText1.value = event.currentTarget.value
-        // }
+          return {
+            inputText1,
+            onInput,
+            inputText2,
+          };
+        },
+      });
 
-        return {
-          // inputText1,
-          // onInput,
-          // inputText2
-        }
-      }
-    })
-
-    app.mount('#app')
-  </script>
-</body>
-
+      app.mount("#app");
+    </script>
+  </body>
 </html>
